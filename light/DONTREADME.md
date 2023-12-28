@@ -10,7 +10,7 @@ let | line by line | flow functions - which, in this
 &emsp;&emsp;break;  
 }
 
-![main.c](./main.png)
+![main.c](/light/main.png)
 
 ## Dependencies
 
