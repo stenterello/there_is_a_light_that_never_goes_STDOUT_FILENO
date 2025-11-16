@@ -60,7 +60,7 @@ spiral(int coord[2])
 				default: break ;
 			}
 		}
-		if (x == 0 && y == 0)
+		if (x <= 0 && y <= 0)
 		{
 			get_space(stdscr);
 			break ;
@@ -144,7 +144,7 @@ leaving_doors(int coord[2], int limit, int l)
 void
 dream_one()
 {
-    int	*coord;
+  int	*coord;
 	int	limit = 4;
 	int	c = 0;
 	int	l = 0;
