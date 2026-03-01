@@ -144,7 +144,7 @@ leaving_doors(int coord[2], int limit, int l)
 void
 dream_one()
 {
-  int	*coord;
+    int	*coord;
 	int	limit = 4;
 	int	c = 0;
 	int	l = 0;
@@ -407,7 +407,7 @@ dream_three()
 		if (x >= getmaxx(stdscr))
 		{
 			x = 4;
-			y += getmaxy(stdscr) / 4; 
+			y += getmaxy(stdscr) / 4;
 			for (int j = 0; j < getmaxx(stdscr); j++)
 				mvwprintw(stdscr, y - 4, j, "=");
 		}
@@ -587,21 +587,16 @@ fill_lightning_boxes(t_box_info **box, WINDOW **win)
 	{
 		if (!written)
 		{
-			wbkgdset(box[order[idx]]->border_window, COLOR_PAIR(2));
-			wbkgdset(win[order[idx]], COLOR_PAIR(2));
-			for (int i = 0; i <= box[order[idx]]->border_window->_maxy; i++)
-			{
-				for (int j = 0; j <= box[order[idx]]->border_window->_maxx; j++)
-					mvwprintw(box[order[idx]]->border_window, i, j, " ");
-			}
-			for (int i = 0; i <= win[order[idx]]->_maxy; i++)
-			{
-				for (int j = 0; j <= win[order[idx]]->_maxx; j++)
-					mvwprintw(win[order[idx]], i, j, " ");
-			}
-			wrefresh(box[order[idx]]->border_window);
-			wrefresh(win[order[idx]]);
-			written = formatted_dynamic_writing(str, win[order[idx]], 0, 0);
+            wbkgdset(box[order[idx]]->border_window, COLOR_PAIR(2));
+            wbkgdset(win[order[idx]], COLOR_PAIR(2));
+
+            werase(box[order[idx]]->border_window);
+            werase(win[order[idx]]);
+
+            wrefresh(box[order[idx]]->border_window);
+            wrefresh(win[order[idx]]);
+
+            written = formatted_dynamic_writing(str, win[order[idx]], 0, 0);
 		}
 		sleep(1);
 		if (files[f_idx] == NULL)
@@ -637,7 +632,7 @@ dream_five()
 		if (x >= getmaxx(stdscr))
 		{
 			x = 4;
-			y += getmaxy(stdscr) / 4; 
+			y += getmaxy(stdscr) / 4;
 			for (int j = 0; j < getmaxx(stdscr); j++)
 				mvwprintw(stdscr, y - 4, j, "=");
 		}
@@ -1100,7 +1095,7 @@ get_visible_lines(int *lines, int *written, int height)
 	ret[0] = -1;
 	ret[1] = -1;
 	ret[2] = -1;
-	
+
 	for (int i = 0; i < height; i++) {
 		if (lines[i] >= 0 && lines[i] < getmaxy(stdscr)) {
 			ret[j++] = lines[i];
@@ -1115,19 +1110,19 @@ int
 write_lines(int lines[50], char **text, int *written, WINDOW *win, int text_height)
 {
 	int	*visible = get_visible_lines(lines, written, text_height);
-
+	int mx = getmaxx(win);
 
 	if (visible[0] != -1 && visible[1] != -1 && visible[2] != -1 && *written < text_height) {
-		mvwprintw(win, visible[2], win->_maxx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
-		mvwprintw(win, visible[1], win->_maxx / 2 - strlen(text[*written - 1]) / 2, "%s", text[*written - 1]);
-		mvwprintw(win, visible[0], win->_maxx / 2 - strlen(text[*written - 2]) / 2, "%s", text[*written - 2]);
+		mvwprintw(win, visible[2], mx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
+		mvwprintw(win, visible[1], mx / 2 - strlen(text[*written - 1]) / 2, "%s", text[*written - 1]);
+		mvwprintw(win, visible[0], mx / 2 - strlen(text[*written - 2]) / 2, "%s", text[*written - 2]);
 	}
 	else if (visible[0] != -1 && visible[1] != -1 && *written < text_height) {
-		mvwprintw(win, visible[1], win->_maxx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
-		mvwprintw(win, visible[0], win->_maxx / 2 - strlen(text[*written - 1]) / 2, "%s", text[*written - 1]);
+		mvwprintw(win, visible[1], mx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
+		mvwprintw(win, visible[0], mx / 2 - strlen(text[*written - 1]) / 2, "%s", text[*written - 1]);
 	}
 	else if (visible[0] != -1 && *written < text_height) {
-		mvwprintw(win, visible[0], win->_maxx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
+		mvwprintw(win, visible[0], mx / 2 - strlen(text[*written]) / 2, "%s", text[*written]);
 	}
 	if (*written > 0 && visible[0] == -1 && visible[1] == -1 && visible[2] == -1)
 	{

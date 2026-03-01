@@ -1,4 +1,4 @@
-#include "light.h" 
+#include "light.h"
 
 void		intro()
 {
@@ -80,7 +80,7 @@ void		get_in_the_car()
 void		lighting_up()
 {
 	int		limits[2];
-	int		x, y; 
+	int		x, y;
 	char	**cigarette;
 	int		c = 0;
 	int		a = 0;
@@ -134,9 +134,9 @@ staring()
 {
 	if (star)
 		last_street(&star);
-	return (star);
+	return (-star);
 }
- 
+
 void
 dream()
 {

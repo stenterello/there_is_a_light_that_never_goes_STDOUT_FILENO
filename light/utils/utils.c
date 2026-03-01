@@ -83,7 +83,7 @@ int			next_word_length(char *str)
 	int	ret = 0;
 	int	i = 0;
 	int	uni = 0;
-	
+
 	if (!str)
 		return (0);
 	while (str[i] && str[i] != ' ' && str[i] != '\n')
@@ -440,7 +440,7 @@ void		print_car(char **matrix)
 	int			flag = 0;
 	int			height = 0;
 
-	
+
 	x = 0;
 	for (int i = 0; matrix[i]; i++)
 		height++;
@@ -886,7 +886,7 @@ void		init_road_info(t_road_info *road_info, char *filename, t_box_info *box)
 void		init_mirror_info(t_mirror_info *mirror_info, int speed, char *filename)
 {
 	int	first_win_height = getmaxy(stdscr) / 8;
-	
+
 	mirror_info->pause = speed;
 	mirror_info->far_away = 0;
 	mirror_info->idx = 0;
@@ -1069,7 +1069,7 @@ void		stars(t_road_info *road_info)
 {
 	int			coords[12][2] = { {5, 46}, {1, 18}, {1, 33}, {1, 38}, {2, 10}, {2, 17}, {2, 43}, {4, 9}, {4, 25}, {5, 51}, {5, 15}, {5, 42} };
 	int			file_size[2] = { 7, 65 };
-	
+
 	proportional(coords, file_size, getmaxy(stdscr) / 2, getmaxx(stdscr) - getmaxx(stdscr) / 8);
 	for (int i = 0; i < road_info->stars; i++)
 		mvprintw(coords[i][0] + road_info->y_off, coords[i][1], "*");
@@ -1206,7 +1206,7 @@ void		move_road(t_box_info *box, WINDOW *win)
 	{
 		update_central_line(road_info.pts, box->height);
 		print_road(win);
-		
+
 		if (i % 3 == 0)
 		{
 			road_info.pts[0]++;
@@ -1375,7 +1375,7 @@ int			line_len(char *ptr)
 void		smoke(int limits[2], int y, int x, int a, int c)
 {
 	int	add = 1;
-	
+
 	if (a)
 	{
 		x -= 1;
@@ -1440,7 +1440,7 @@ int		write_on_smoke(char *s)
 			else if (!(j % 6))
 				mvwprintw(win, y, j, ")");
 			else if (j % 6 == 2)
-				mvwprintw(win, y, j, "(");				
+				mvwprintw(win, y, j, "(");
 		}
 		y--;
 		if (!y)
@@ -1490,7 +1490,7 @@ last_street(int* star)
 	{
 		update_central_line(road_info.pts, box->height);
 		print_road(win);
-		
+
 		if (i % 3 == 0)
 		{
 			road_info.pts[0]++;
@@ -1521,7 +1521,7 @@ last_street(int* star)
 	curs_set(1);
 	wrefresh(stdscr);
 	for (int k = 0; road_info.matrix[k]; k++)
-		free(road_info.matrix[k++]);
+		free(road_info.matrix[k]);
 	free(road_info.matrix);
 	*star = 0;
 }
